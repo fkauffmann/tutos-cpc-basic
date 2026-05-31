@@ -1,0 +1,37 @@
+{
+  // Build a Locomotive Basic file and run it on Caprice32 (snap) on Ubuntu 25.x
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "make dsk",
+      "type": "process",
+      "command": "iDSK",
+      "args": ["${workspaceFolderBasename}.dsk", "-n"]
+    },
+    {
+      "label": "insert basic file",
+      "type": "process",
+      "command": "iDSK",
+      "args": [
+        "${workspaceFolderBasename}.dsk",
+        "-t",
+        "0",
+        "-i",
+        "${fileBasename}",
+        "-f"
+      ]
+    },
+    {
+      "label": "run caprice32",
+      "type": "process",
+      "command": "caprice32.launcher",
+      "args": ["${workspaceFolderBasename}.dsk", "--autocmd=run\"${fileBasename}\""]
+    },
+    {
+      "label": "build",
+      "dependsOn": ["make dsk", "insert basic file", "run caprice32"],
+      "dependsOrder": "sequence",
+      "problemMatcher": []
+    }
+  ]
+}
