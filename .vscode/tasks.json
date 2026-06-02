@@ -29,7 +29,8 @@
     },
     {
       "label": "build",
-      "dependsOn": ["make dsk", "insert basic file", "run caprice32"],
+      //"dependsOn": ["make dsk", "insert basic file", "run caprice32"],
+      "dependsOn": ["insert basic file", "run caprice32"],
       "dependsOrder": "sequence",
       "problemMatcher": []
     }
